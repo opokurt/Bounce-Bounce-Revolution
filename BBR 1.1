@@ -1,0 +1,60 @@
+let button;
+let rad = 10;
+let xpos, ypos;
+let dpos,  spos;  
+let xspeed = 5.8;
+let yspeed = 5.2;
+let xdirection = 1.5;
+let ydirection = 1.5;
+function setup() {
+//ok i kinda realize the button is virtually useless but i could careless it just looks cool.
+  button = createButton('BUTTON THAT kinda RESETS THE SIMULATION');
+  button.position(rect.x + rect.width, 5);
+  button.mousePressed(setup);
+  noCursor();
+  createCanvas(1050, 1050);
+  noStroke();
+  frameRate(120);
+   textSize(30);
+  textAlign(TOP);
+  ellipseMode(RADIUS);
+xpos = width / 2.2;
+ypos = height / 2.2;
+dpos = width / 2.2;
+spos = height / 2.2;
+}
+function draw() {
+  background(102);
+background(200);
+  text(frameCount, width / 9, height / 17);
+  xpos = xpos + xspeed * xdirection;
+ypos = ypos + yspeed * ydirection;
+spos = spos + xspeed * xdirection;
+dpos = dpos + yspeed * ydirection;
+ellipse(mouseX, mouseY, 5, 5)
+  if (xpos > width - rad || xpos < rad) {
+    xdirection *= -1;
+  }
+  if (ypos > height - rad || ypos < rad) {
+    ydirection *= -1;
+  }
+  if (dpos > width - rad || dpos < rad) {
+    xdirection *= 1.0002;
+}
+if (spos > height - rad || spos < rad) {
+    ydirection *= 1.0002;
+  }
+rect(xpos, ypos, rad);
+ellipse(dpos, spos, rad);
+let m = month();
+text('Current month: ' + m, 500, 30);
+let d = day();
+text('Current day: ' + d, 500, 55);
+let h = hour();
+text('Current hour: ' + h, 500, 78);
+let n = minute();
+text('Current minute: ' + n, 500, 104);
+let s = second();
+text('Current second: ' + s, 500, 128);
+}
+
